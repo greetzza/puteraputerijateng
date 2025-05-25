@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400&display=swap');
+        
+        :root {
+            --pastel-pink: #ffd6e0;
+            --pastel-mint: #c1f0d2;
+            --pastel-lavender: #d4c4fb;
+            --pastel-peach: #ffdac1;
+            --pastel-blue: #b5ead7;
+            --soft-gray: #f8f9fa;
+            --text-dark: #333333;
+            --text-light: #5a5a5a;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pastel-blue);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 1s ease;
+        }
+        
+        .card-container {
+            position: relative;
+            height: auto;
+            min-height: 100vh;
+            width: 90%;
+            max-width: 800px; /* Diperbesar untuk menampung konten */
+            perspective: 1000px;
+            margin: 2rem auto;
+            overflow: visible;
+        }
+        
+        .card {
+            position: relative;
+            width: 100%;
+            min-height: 400px; /* Diubah ke min-height untuk konten yang lebih panjang */
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+        
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            border-radius: 15px;
+            overflow-y: auto; /* Untuk konten yang panjang */
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-peach));
+            z-index: 2;
+        }
+        
+        .card-back {
+            height: auto;
+            min-height: 100%;
+            display: block;
+            background: linear-gradient(135deg, var(--pastel-mint), var(--pastel-lavender));
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            justify-content: flex-start; /* Konten dimulai dari atas */
+            padding-top: 3rem; /* Ruang tambahan di atas */
+        }
+        
+        .card-back::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .card-back::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        .card-back::-webkit-scrollbar-thumb {
+            background-color: #d4af37;
+            border-radius: 5px;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 80%;
+            margin: 0.5rem 0;
+        }
+        
+        .floral-decoration {
+            position: absolute;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .floral-1 {
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            transform: rotate(-15deg);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floral-2 {
+            bottom: 20px;
+            right: 20px;
+            font-size: 3rem;
+            transform: rotate(15deg);
+            animation: float 7s ease-in-out infinite 1s;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            overflow: visible;
+            height: auto;
+            scrollbar-width: thin;
+        }
+        
+        .btn {
+            margin-top: 2rem;
+            padding: 0.8rem 1.8rem;
+            background-color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .signature {
+            margin-top: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--pastel-pink);
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-15deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(-15deg);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+
+        /* Gaya untuk galeri slider */
+        .gallery-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        
+        .slider {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .slider-nav button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-nav button:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        /* Tombol musik */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .card {
+                min-height: 500px;
+            }
+            
+            .slider {
+                height: 300px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-face {
+                padding: 1.5rem;
+            }
+            
+            .slider {
+                height: 400px;
+            }
+            
+            .slide-caption {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
